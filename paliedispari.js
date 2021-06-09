@@ -4,12 +4,12 @@ var output= document.getElementById("output");
 
 function palindroma(word) {
     for(var i=0; i< word.length/2; i++){
+
         if(word[i] != word[word.length - 1 - i]){
             return output.innerHTML = "La parola " + word + " NON è palindroma";
-        }   else{
-            return output.innerHTML = "La parola " + word + " è palindroma!";
-        }
+        }      
     }
+    return output.innerHTML = "La parola " + word + " è palindroma!";
 }
 
 var parola = prompt("Inserisci una parola");
