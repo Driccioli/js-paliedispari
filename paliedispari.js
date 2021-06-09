@@ -17,23 +17,26 @@ palindroma(parola);
 
 // Gioco a pari o dispari 
 
-function pariDispari(pari, input) {
-    var generated = Math.floor(Math.random() *5) +1;
+function getRandomNumber(min, max) {
+    if(max >= min){
+        var randomNumber = Math.floor(Math.random() * (max - min + 1)+min);
+        return randomNumber;
+    }   else{
+        console.log("Il massimo è minore del minimo, scambio i numeri");
+        return getRandomNumber(max, min);
+    }
+    
+}
+
+function pariDispari(input) {
+    var generated = getRandomNumber(1,5);
     output.innerHTML += "<br> Il tuo numero: " + input + "<br> Numero del computer: " + generated;
     if((input + generated) % 2 == 0){
         output.innerHTML += "<br> La somma è PARI";
-        if(pari){
-            return output.innerHTML += "<br> Hai vinto!";
-        }   else{
-            return output.innerHTML += "<br> Ha vinto il computer. Peccato!";
-        }
+        return true;
     }   else{
         output.innerHTML += "<br> La somma è DISPARI";
-        if(!pari){
-            return output.innerHTML += "<br> Hai vinto!";
-        }   else{
-            return output.innerHTML += "<br> Ha vinto il computer. Peccato!";
-        }
+        return false;
     }
 }
 
@@ -54,4 +57,8 @@ while(numInput < 1 || numInput > 5){
     numInput = parseInt(prompt("Numero non valido. Inserisci un numero da 1 a 5!"));
 }
 
-pariDispari(pariBool, numInput);
+if(pariDispari(numInput) == pariBool){
+    output.innerHTML += "<br> Hai vinto!";
+}   else{
+    output.innerHTML +="<br> Hai perso. Peccato!";
+}
